@@ -85,7 +85,6 @@ export default function Restore() {
               value={values.email}
               onChange={handleChange("email")}
             />
-          )}
           {unSent ? (
             <Button
               type="submit"

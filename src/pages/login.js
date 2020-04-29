@@ -64,7 +64,7 @@ export default function SignIn() {
     password: ""
   })
   // eslint-disable-next-line
-  const [sIn, { data }] = useMutation(
+  const [sIn, { loading, error }] = useMutation(
     SIGN_IN, {
       variables: values,
       onCompleted(data) {
@@ -73,11 +73,10 @@ export default function SignIn() {
       }
     }
   )
-
+  
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
   };
-
   return (
     <Grid container component="main" className={classes.root}>
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -120,6 +119,8 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+              {loading && <p>Loading...</p>}
+              {error && <p>Error :( Please try again {error.toString()}</p>}
             <Button
               type="submit"
               fullWidth
